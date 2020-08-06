@@ -24,7 +24,15 @@
         }catch(PDOException $e){
             echo 'DB接続エラー:' . $e->getMessage();
         }
-        $memos = $db->query('SELECT * FROM memos WHERE id=1');
+        //idに数字以外が指定されたときの処理
+        $id = $_REQUEST['id'];
+        if (!is_numeric($id) || $id <= 0)  {
+          print('1以上の数字で指定してください');
+          exit();
+        }
+
+        $memos = $db->prepare('SELECT * FROM memos WHERE id=?');
+        $memos->execute(array($id));
         $memo = $memos->fetch();
         ?>
         <article>
