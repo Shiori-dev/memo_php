@@ -23,8 +23,10 @@
         // Mysqlに接続
           try{
               $db = new PDO('mysql:dbname=mydb;host=localhost;port=8888;charset=utf8','root','root');
-              // フォームに記入された内容をDBにInsertする処理
-               $db->exec('INSERT INTO memos SET memo="' . $_POST['memo'] .'", created_at=NOW()');
+              // フォームに記入された内容をDBにInsertする処理(危険な文字列をそのまま渡さない)
+              $statement = $db->prepare('INSERT INTO memos SET memo=?, created_at=NOW()');
+              $statement->execute(array($_POST['memo']));
+              echo 'メッセージが登録されました';
               // DBにうまくつながらなかったらエラーを表示する処理
           }catch(PDOException $e){
               echo 'DB接続エラー:' . $e->getMessage();
