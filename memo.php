@@ -17,13 +17,10 @@
 
     <main>
     <h2>Practice</h2>
-      <!-- Mysqlに接続 -->
         <?php
-        try {
-          $db = new PDO('mysql:dbname=mydb;host=localhost;port=8888;charset=utf8', 'root','root');
-        }catch(PDOException $e){
-            echo 'DB接続エラー:' . $e->getMessage();
-        }
+          // Mysqlに接続
+          require('dbconnect.php');
+
         //idに数字以外が指定されたときの処理
         $id = $_REQUEST['id'];
         if (!is_numeric($id) || $id <= 0)  {
