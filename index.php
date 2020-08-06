@@ -17,10 +17,11 @@
 
     <main>
     <h2>Practice</h2>
+      <!-- Mysqlに接続 -->
       <pre>
         <?php
           try {
-            $db = new PDO('mysql:dbname=mydb; host=127.0.0.1;charset=utf8', 'root','root');
+            $db = new PDO('mysql:dbname=mydb;host=localhost;port=8888;charset=utf8', 'root','root');
           }catch(PDOException $e){
               echo 'DB接続エラー:' . $e->getMessage();
           }
