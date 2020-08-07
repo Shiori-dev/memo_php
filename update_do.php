@@ -17,10 +17,20 @@
 
     <main>
     <h2>Practice</h2>
-      <form action="input_do.php" method="post">
-          <textarea name="memo" cols="50" rows="10" placeholder="自由にメモを残してください"></textarea><br>
-          <button type="submit">登録する</button>
-      </form>>
+      <!-- Mysqlに接続 -->
+      <pre>
+        <?php
+        // Mysqlに接続
+        require('dbconnect.php');
+
+        $statement = $db->prepare('UPDATE memos SET memo=? WHERE id=?');
+        $statement->execute(array($_POST['memo'],$_POST['id']));
+        ?>
+        <p>メモの内容を変更しました</p>
+      </pre>
+
+      <p><a href="index.php">戻る</a></p>
+
     </main>
   </body>
 </html>
