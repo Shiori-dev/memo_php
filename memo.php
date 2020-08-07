@@ -34,6 +34,8 @@
         ?>
         <article>
           <pre><?php print($memo['memo']); ?></pre>
+          <a href="update.php?id=<?php print($memo['id']); ?>">編集する</a>
+          ｜
           <a href="index.php">戻る</a>
         </article>
     </main>
